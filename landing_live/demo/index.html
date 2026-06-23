@@ -138,7 +138,7 @@
     <div class="hr">
       <div class="clock"><span class="t" id="clk">—</span><span class="d" id="day">—</span></div>
       <div class="roleview" id="roleview"><button class="on" data-v="mudur" data-i18n="mudur">Müdür</button><button data-v="personel" data-i18n="personel">Personel</button></div>
-      <div class="roleview" id="langtog"><button class="on" data-l="tr">TR</button><button data-l="en">EN</button></div>
+      <div class="roleview" id="langtog"><button class="on" data-l="tr">TR</button><button data-l="en">EN</button><button data-l="nl">NL</button></div>
     </div>
   </header>
 
@@ -289,7 +289,16 @@ const I18N = {
     c_map:"Live Map", c_park:"Parking & Loading", c_logs:"Event Log",
     c_staff:"Staff Comms", c_edge:"EDGE Infra", c_sys:"System Health",
     parkmind:"ParkMind", talkmind:"TalkMind", logs_meta:"latest records",
-    staff_sent:"Dispatched tasks", edge_meta:"edge nodes & services", sys_meta:"StoreMind stack" }
+    staff_sent:"Dispatched tasks", edge_meta:"edge nodes & services", sys_meta:"StoreMind stack" },
+  nl:{ site:"Pilotwinkel · Site-002", live:"LIVE", live_feed:"live feed",
+    mudur:"Manager", personel:"Personeel",
+    nav_overview:"Overzicht", nav_cams:"Camera's", nav_map:"Kaart", nav_park:"Parkeren",
+    nav_logs:"Gebeurtenissen", nav_staff:"Personeel", nav_edge:"EDGE Infra", nav_sys:"Systeemstatus",
+    c_people:"Mensen in winkel", c_vip:"Herkende klant", c_events:"Recente gebeurtenissen", c_cams:"Camera's",
+    c_map:"Live kaart", c_park:"Parkeren & laden", c_logs:"Gebeurtenissen",
+    c_staff:"Personeelscommunicatie", c_edge:"EDGE Infra", c_sys:"Systeemstatus",
+    parkmind:"ParkMind", talkmind:"TalkMind", logs_meta:"laatste records",
+    staff_sent:"Verzonden taken", edge_meta:"edge-nodes & services", sys_meta:"StoreMind-stack" }
 };
 let LANG = "tr";
 function applyStatic(){
@@ -348,66 +357,57 @@ function camSVG(cam){
 
 // ════ i18n: dinamik metin sözlüğü (veri içeriği) ════
 const DICT = {
-  // zonlar
-  "REYON 4":"AISLE 4","REYON 2":"AISLE 2","REYON A":"AISLE A","REYON C":"AISLE C",
-  "MANAV":"PRODUCE","SOĞUK ODA":"COLD ROOM","YÜKLEME":"LOADING","GİRİŞ":"ENTRANCE","KASA 2":"CHECKOUT 2",
-  "REYON 1":"AISLE 1","REYON 3":"AISLE 3","REYON 5":"AISLE 5","YÜKLEME RAMPASI":"LOADING DOCK","STOK":"STOCK","KASA 1":"CHECKOUT 1","KASA 3":"CHECKOUT 3","BOŞ RAF":"EMPTY SHELF",
-  "Giriş":"Entrance","Kasa 2":"Checkout 2","Kasa 1":"Checkout 1","Reyon 2":"Aisle 2","Reyon 4":"Aisle 4",
-  "Manav":"Produce","Soğuk Oda":"Cold Room","Koridor":"Corridor","Reyon A 4-15":"Aisle A 4-15","Reyon C 2-08":"Aisle C 2-08",
-  // olay metinleri
-  "Tanınmayan kişi dolaşıyor":"Unrecognized person wandering",
-  "Kişi düştü — yerde":"Person fell — on floor",
-  "Yerde sıvı/dökülme":"Liquid spill on floor",
-  "Boş raf":"Empty shelf",
-  "Kapı 4 dk'dır açık":"Door open for 4 min",
-  "Tanınmayan araç rampada":"Unrecognized vehicle at dock",
-  "Tanınan müşteri girişte":"Recognized customer at entrance",
-  "Kasada kuyruk oluştu":"Queue forming at checkout",
-  // adresler
-  "Batı · 4-15":"West · 4-15","Doğu · 2-08":"East · 2-08",
-  // park etiketleri
-  "izinsiz":"unauthorized","bekliyor":"waiting","otoparkta":"parked",
-  "12 dk önce · rampada":"12 min ago · at dock","207 dk önce":"207 min ago","245 dk önce":"245 min ago",
-  "368 dk önce":"368 min ago","970 dk önce":"970 min ago",
-  // personel
-  "Kasa":"Checkout","Güvenlik":"Security","Reyon":"Aisles","Temizlik":"Cleaning","Yükleme":"Loading",
-  "çevrimiçi":"online","sahada":"on floor","meşgul":"busy","molada":"on break",
-  // görev metinleri
-  "Ayşe (Kasa)":"Ayşe (Checkout)","Mehmet (Güvenlik)":"Mehmet (Security)",
-  "Zeynep (Temizlik)":"Zeynep (Cleaning)","Can (Reyon)":"Can (Aisles)",
-  "Kasa 2'yi aç — kuyruk oluştu":"Open Checkout 2 — queue forming",
-  "Reyon 4 — tanınmayan kişi kontrol":"Aisle 4 — check unrecognized person",
-  "Manav — yerde sıvı, dubayı koy":"Produce — spill, place wet-floor sign",
-  "Reyon A 4-15 — CZ-Süt yenile (depoda 24 adet)":"Aisle A 4-15 — restock CZ-Milk (24 in stock)",
-  "okundu":"read","iletildi":"delivered","gönderildi":"sent",
-  // edge
-  "Orin · Edge Ana":"Orin · Edge Main","OPi5 · CamMind Edge":"OPi5 · CamMind Edge",
-  // system health
-  "Çevrimiçi":"Online","Aktif":"Active","Açık":"Open","şimdi":"now",
-  "Frankfurt · eu-central":"Frankfurt · eu-central","son: 1 dk önce":"last: 1 min ago",
-  "okuma fonksiyonu":"read function","son 1 saat":"last 1 hour","satır izolasyonu":"row isolation",
-  "son 24 saat":"last 24 hours","30 gün":"30 days","otomatik 15 sn":"auto 15 s",
-  "Supabase DB":"Supabase DB","Olay hızı":"Event rate","Hata oranı":"Error rate","Son senkron":"Last sync",
-  // kamera etiketleri
-  "kişi":"person","kuyruk":"queue","tanınmayan":"unknown",
-  "tanınan":"recognized","düşme":"fall","sıvı":"spill","kapı":"door","boş raf":"empty shelf",
-  // log durum / başlıklar
-  "OK":"OK","UYARI":"WARN","KRİTİK":"CRIT",
-  // sabit cümleler
-  "Reyonlar, kasalar ve girişte dağılım — haritada canlı.":"Distribution across aisles, checkouts and entrance — live on map.",
-  "araç":"vehicle"
+  "REYON 4":{en:"AISLE 4",nl:"GANGPAD 4"},"REYON 2":{en:"AISLE 2",nl:"GANGPAD 2"},"REYON A":{en:"AISLE A",nl:"GANGPAD A"},"REYON C":{en:"AISLE C",nl:"GANGPAD C"},
+  "MANAV":{en:"PRODUCE",nl:"VERS"},"SOĞUK ODA":{en:"COLD ROOM",nl:"KOELCEL"},"YÜKLEME":{en:"LOADING",nl:"LADEN"},"GİRİŞ":{en:"ENTRANCE",nl:"INGANG"},"KASA 2":{en:"CHECKOUT 2",nl:"KASSA 2"},
+  "REYON 1":{en:"AISLE 1",nl:"GANGPAD 1"},"REYON 3":{en:"AISLE 3",nl:"GANGPAD 3"},"REYON 5":{en:"AISLE 5",nl:"GANGPAD 5"},"YÜKLEME RAMPASI":{en:"LOADING DOCK",nl:"LAADPERRON"},"STOK":{en:"STOCK",nl:"VOORRAAD"},"KASA 1":{en:"CHECKOUT 1",nl:"KASSA 1"},"KASA 3":{en:"CHECKOUT 3",nl:"KASSA 3"},"BOŞ RAF":{en:"EMPTY SHELF",nl:"LEEG SCHAP"},
+  "Giriş":{en:"Entrance",nl:"Ingang"},"Kasa 2":{en:"Checkout 2",nl:"Kassa 2"},"Kasa 1":{en:"Checkout 1",nl:"Kassa 1"},"Reyon 2":{en:"Aisle 2",nl:"Gangpad 2"},"Reyon 4":{en:"Aisle 4",nl:"Gangpad 4"},
+  "Manav":{en:"Produce",nl:"Vers"},"Soğuk Oda":{en:"Cold Room",nl:"Koelcel"},"Koridor":{en:"Corridor",nl:"Gangpad"},"Reyon A 4-15":{en:"Aisle A 4-15",nl:"Gangpad A 4-15"},"Reyon C 2-08":{en:"Aisle C 2-08",nl:"Gangpad C 2-08"},
+  "Tanınmayan kişi dolaşıyor":{en:"Unrecognized person wandering",nl:"Onbekend persoon loopt rond"},
+  "Kişi düştü — yerde":{en:"Person fell — on floor",nl:"Persoon gevallen — op de vloer"},
+  "Yerde sıvı/dökülme":{en:"Liquid spill on floor",nl:"Vloeistof gemorst op vloer"},
+  "Boş raf":{en:"Empty shelf",nl:"Leeg schap"},
+  "Kapı 4 dk'dır açık":{en:"Door open for 4 min",nl:"Deur 4 min open"},
+  "Tanınmayan araç rampada":{en:"Unrecognized vehicle at dock",nl:"Onbekend voertuig aan perron"},
+  "Tanınan müşteri girişte":{en:"Recognized customer at entrance",nl:"Herkende klant bij ingang"},
+  "Kasada kuyruk oluştu":{en:"Queue forming at checkout",nl:"Rij bij de kassa"},
+  "Batı · 4-15":{en:"West · 4-15",nl:"West · 4-15"},"Doğu · 2-08":{en:"East · 2-08",nl:"Oost · 2-08"},
+  "izinsiz":{en:"unauthorized",nl:"ongeautoriseerd"},"bekliyor":{en:"waiting",nl:"wacht"},"otoparkta":{en:"parked",nl:"geparkeerd"},
+  "12 dk önce · rampada":{en:"12 min ago · at dock",nl:"12 min geleden · aan perron"},"207 dk önce":{en:"207 min ago",nl:"207 min geleden"},"245 dk önce":{en:"245 min ago",nl:"245 min geleden"},
+  "368 dk önce":{en:"368 min ago",nl:"368 min geleden"},"970 dk önce":{en:"970 min ago",nl:"970 min geleden"},
+  "Kasa":{en:"Checkout",nl:"Kassa"},"Güvenlik":{en:"Security",nl:"Beveiliging"},"Reyon":{en:"Aisles",nl:"Gangpaden"},"Temizlik":{en:"Cleaning",nl:"Schoonmaak"},
+  "çevrimiçi":{en:"online",nl:"online"},"sahada":{en:"on floor",nl:"in winkel"},"meşgul":{en:"busy",nl:"bezig"},"molada":{en:"on break",nl:"pauze"},
+  "Ayşe (Kasa)":{en:"Ayşe (Checkout)",nl:"Ayşe (Kassa)"},"Mehmet (Güvenlik)":{en:"Mehmet (Security)",nl:"Mehmet (Beveiliging)"},
+  "Zeynep (Temizlik)":{en:"Zeynep (Cleaning)",nl:"Zeynep (Schoonmaak)"},"Can (Reyon)":{en:"Can (Aisles)",nl:"Can (Gangpaden)"},
+  "Kasa 2'yi aç — kuyruk oluştu":{en:"Open Checkout 2 — queue forming",nl:"Open Kassa 2 — rij vormt zich"},
+  "Reyon 4 — tanınmayan kişi kontrol":{en:"Aisle 4 — check unrecognized person",nl:"Gangpad 4 — controleer onbekend persoon"},
+  "Manav — yerde sıvı, dubayı koy":{en:"Produce — spill, place wet-floor sign",nl:"Vers — gemorst, plaats waarschuwingsbord"},
+  "Reyon A 4-15 — CZ-Süt yenile (depoda 24 adet)":{en:"Aisle A 4-15 — restock CZ-Milk (24 in stock)",nl:"Gangpad A 4-15 — CZ-Melk bijvullen (24 op voorraad)"},
+  "okundu":{en:"read",nl:"gelezen"},"iletildi":{en:"delivered",nl:"afgeleverd"},"gönderildi":{en:"sent",nl:"verzonden"},
+  "Orin · Edge Ana":{en:"Orin · Edge Main",nl:"Orin · Edge Hoofd"},"OPi5 · CamMind Edge":{en:"OPi5 · CamMind Edge",nl:"OPi5 · CamMind Edge"},
+  "Çevrimiçi":{en:"Online",nl:"Online"},"Aktif":{en:"Active",nl:"Actief"},"Açık":{en:"Open",nl:"Open"},"şimdi":{en:"now",nl:"nu"},
+  "Frankfurt · eu-central":{en:"Frankfurt · eu-central",nl:"Frankfurt · eu-central"},"son: 1 dk önce":{en:"last: 1 min ago",nl:"laatst: 1 min geleden"},
+  "okuma fonksiyonu":{en:"read function",nl:"leesfunctie"},"son 1 saat":{en:"last 1 hour",nl:"laatste 1 uur"},"satır izolasyonu":{en:"row isolation",nl:"rij-isolatie"},
+  "son 24 saat":{en:"last 24 hours",nl:"laatste 24 uur"},"30 gün":{en:"30 days",nl:"30 dagen"},"otomatik 15 sn":{en:"auto 15 s",nl:"auto 15 s"},
+  "Supabase DB":{en:"Supabase DB",nl:"Supabase DB"},"Olay hızı":{en:"Event rate",nl:"Gebeurtenisfrequentie"},"Hata oranı":{en:"Error rate",nl:"Foutpercentage"},"Son senkron":{en:"Last sync",nl:"Laatste sync"},
+  "kişi":{en:"person",nl:"persoon"},"kuyruk":{en:"queue",nl:"rij"},"tanınmayan":{en:"unknown",nl:"onbekend"},
+  "tanınan":{en:"recognized",nl:"herkend"},"düşme":{en:"fall",nl:"val"},"sıvı":{en:"spill",nl:"gemorst"},"kapı":{en:"door",nl:"deur"},"boş raf":{en:"empty shelf",nl:"leeg schap"},
+  "OK":{en:"OK",nl:"OK"},"UYARI":{en:"WARN",nl:"WAARSCH"},"KRİTİK":{en:"CRIT",nl:"KRITIEK"},
+  "Reyonlar, kasalar ve girişte dağılım — haritada canlı.":{en:"Distribution across aisles, checkouts and entrance — live on map.",nl:"Verdeling over gangpaden, kassa's en ingang — live op kaart."},
+  "araç":{en:"vehicle",nl:"voertuig"}
 };
 const ST_TR = {online:"çevrimiçi",field:"sahada",busy:"meşgul",brk:"molada"};
 const ST_EN = {online:"online",field:"on floor",busy:"busy",brk:"on break"};
-function tr(x){ if(x==null) return x; return LANG==="en" ? (DICT[x]!=null?DICT[x]:x) : x; }
+const ST_NL = {online:"online",field:"in winkel",busy:"bezig",brk:"pauze"};
+function L(tr,en,nl){ return LANG==="en"?en : LANG==="nl"?nl : tr; }
+function tr(x){ if(x==null) return x; if(LANG==="tr") return x; const d=DICT[x]; return d? (d[LANG]!=null?d[LANG]:d.en) : x; }
 function trAgo(a){
   let n; if(a==null) n=0; else if(typeof a==="number") n=a;
   else { const m=String(a).match(/(\d+)/); n=m?+m[1]:0; const z=String(a);
     if(/sa|saat/.test(z)) n*=60; else if((/\bg\b|gün/.test(z))&&!/dk/.test(z)) n*=1440; }
-  if(n<1) return LANG==="en"?"now":"şimdi";
-  if(n<60) return n+(LANG==="en"?" min":" dk");
-  const h=Math.floor(n/60); if(h<24) return h+(LANG==="en"?" h":" sa");
-  return Math.floor(h/24)+(LANG==="en"?" d":" g");
+  if(n<1) return L("şimdi","now","nu");
+  if(n<60) return n+L(" dk"," min"," min");
+  const h=Math.floor(n/60); if(h<24) return h+L(" sa"," h"," u");
+  return Math.floor(h/24)+L(" g"," d"," d");
 }
 function inferKind(e){const t=(e.text||"").toLowerCase();
   if(/(düş|yere|fall)/.test(t)) return "fall";
@@ -425,12 +425,15 @@ function isFresh(ago){ if(!ago) return false; const s=String(ago).toLowerCase();
   const m=s.match(/(\d+)\s*(dk|min)/); return m ? parseInt(m[1])<=30 : false; }
 let IS_LIVE=false;
 function renderFoot(){const el=document.getElementById("foot"); if(!el)return;
-  if(LANG==="en") el.innerHTML = IS_LIVE
-    ? "Operations panel · events live from <code>v_store_events_feed</code>; map / cameras / parking are synthetic for now (go live when SpaceMind & ParkMind connect)."
-    : "Operations panel · synthetic visuals for now. Events are live (FaceMind); map / cameras / parking go live with SpaceMind & ParkMind.";
-  else el.innerHTML = IS_LIVE
-    ? "Operasyon paneli · olaylar <code>v_store_events_feed</code>'den canlı; harita / kamera / otopark şu an sentetik (SpaceMind & ParkMind bağlanınca canlıya döner)."
-    : "Operasyon paneli · şu an sentetik görsel veri. Olaylar canlıya bağlı (FaceMind); harita / kamera / otopark SpaceMind & ParkMind ile canlıya dönecek.";
+  const FT={
+    tr:{live:"Operasyon paneli · olaylar <code>v_store_events_feed</code>'den canlı; harita / kamera / otopark şu an sentetik (SpaceMind & ParkMind bağlanınca canlıya döner).",
+        syn:"Operasyon paneli · şu an sentetik görsel veri. Olaylar canlıya bağlı (FaceMind); harita / kamera / otopark SpaceMind & ParkMind ile canlıya dönecek."},
+    en:{live:"Operations panel · events live from <code>v_store_events_feed</code>; map / cameras / parking are synthetic for now (go live when SpaceMind & ParkMind connect).",
+        syn:"Operations panel · synthetic visuals for now. Events are live (FaceMind); map / cameras / parking go live with SpaceMind & ParkMind."},
+    nl:{live:"Operatiepaneel · gebeurtenissen live uit <code>v_store_events_feed</code>; kaart / camera's / parkeren nu synthetisch (live zodra SpaceMind & ParkMind verbinden).",
+        syn:"Operatiepaneel · nu synthetische beelden. Gebeurtenissen zijn live (FaceMind); kaart / camera's / parkeren gaan live met SpaceMind & ParkMind."}
+  };
+  const f=FT[LANG]||FT.tr; el.innerHTML = IS_LIVE ? f.live : f.syn;
 }
 function setLang(l){
   LANG = l;
@@ -438,7 +441,7 @@ function setLang(l){
   document.querySelectorAll("#langtog button").forEach(b=>b.classList.toggle("on", b.dataset.l===l));
   applyStatic();
   renderVip(); renderEvents(); renderPark(); renderLogs(); renderStaff(); renderEdge(); renderHealth(); renderCams(); renderMap();
-  const peopleWord = LANG==="en"?"people":"kişi", activeWord = LANG==="en"?"active":"aktif";
+  const peopleWord = L("kişi","people","mensen"), activeWord = L("aktif","active","actief");
   const pn=document.getElementById("peopleNum"); if(pn) pn.innerHTML=PEOPLE+"<small>"+peopleWord+"</small>";
   const pm=document.getElementById("peopleMeta"); if(pm) pm.textContent=PEOPLE+" "+activeWord;
   const ps=document.getElementById("peopleSub"); if(ps) ps.textContent=tr("Reyonlar, kasalar ve girişte dağılım — haritada canlı.");
@@ -599,7 +602,7 @@ function pSil(cx,baseY,hgt,col){const w=hgt*0.44;
 }
 const EV_LBL={face_unknown:"tanınmayan",face_match:"tanınan",fall:"düşme",spill:"sıvı",vehicle:"araç",queue:"kuyruk",door:"kapı"};
 function evScene(ev,idx){
-  const ts=new Date().toLocaleTimeString(LANG==="en"?"en-GB":"tr-TR",{hour:"2-digit",minute:"2-digit",second:"2-digit"});
+  const ts=new Date().toLocaleTimeString(L("tr-TR","en-GB","nl-NL"),{hour:"2-digit",minute:"2-digit",second:"2-digit"});
   const cam="CAM "+String(11+idx).padStart(2,"0");
   const col=ev.tier==="security"?"#ff5a4d":ev.tier==="customer"?"#46c8ff":"#ffc24d";
   let s=`<defs>
@@ -653,11 +656,11 @@ function renderCams(){
   document.getElementById("cams").innerHTML = EVENTS.slice(0,6).map((e,i)=>{
     const dot=e.tier==="security"?"#c8453a":e.tier==="customer"?"#2d6e8e":"#e3a012";
     const zoneTxt=tr(e.zone)+(e.addr?" · "+tr(e.addr):"");
-    return `<div class="cam">${evScene(e,i)}<div class="cam-ft"><span class="zn"><span class="td" style="background:${dot}"></span>${esc(zoneTxt)}</span><span class="ag">${esc(trAgo(e.ago))} ${LANG==="en"?"ago":"önce"}</span></div></div>`;
+    return `<div class="cam">${evScene(e,i)}<div class="cam-ft"><span class="zn"><span class="td" style="background:${dot}"></span>${esc(zoneTxt)}</span><span class="ag">${esc(trAgo(e.ago))} ${L("önce","ago","geleden")}</span></div></div>`;
   }).join("");
 }
 function renderMap(){ buildDots(); document.getElementById("map").innerHTML=mapSVG();
-  const pw=LANG==="en"?"people":"kişi", aw=LANG==="en"?"active":"aktif";
+  const pw=L("kişi","people","mensen"), aw=L("aktif","active","actief");
   document.getElementById("mapCount").textContent=PEOPLE+" "+pw;
   document.getElementById("peopleNum").innerHTML=PEOPLE+'<small>'+pw+'</small>';
   document.getElementById("peopleMeta").textContent=PEOPLE+" "+aw;
@@ -666,13 +669,13 @@ function renderVip(){
   document.getElementById("vipMeta").textContent=VIP.length+" misafir";
   document.getElementById("vipList").innerHTML = VIP.length? VIP.map(v=>`
     <div class="person"><div class="ava">${v.image_url?`<img src="${esc(v.image_url)}" alt="">`:microThumb('face_match','#157F5B')}</div><div><div class="nm">${esc(v.name)}</div>
-    <div class="sb">${esc(v.cam)} · ${esc(trAgo(v.ago))} ${LANG==="en"?"ago":"önce"}</div></div></div>`).join("") : `<div class="empty">${LANG==="en"?"No recognized customer.":"Tanınan müşteri yok."}</div>`; }
+    <div class="sb">${esc(v.cam)} · ${esc(trAgo(v.ago))} ${L("önce","ago","geleden")}</div></div></div>`).join("") : `<div class="empty">${L("Tanınan müşteri yok.","No recognized customer.","Geen herkende klant.")}</div>`; }
 function renderEvents(){
   document.getElementById("evList").innerHTML = EVENTS.length? EVENTS.slice(0,8).map(e=>`
     <div class="ev ${e.tier}"><div class="evthumb">${evThumb(e)}</div>
       <div class="et"><div>${esc(tr(e.text))}</div>
         <div class="ez">${esc(tr(e.zone))}${e.addr?` · <span class="ad">${esc(tr(e.addr))}</span>`:""}${e.product?` · <span class="ad">${esc(e.product)}</span>`:""}</div></div>
-      <span class="eg">${esc(trAgo(e.ago))}</span></div>`).join("") : `<div class="empty">${LANG==="en"?"No events.":"Olay yok."}</div>`; }
+      <span class="eg">${esc(trAgo(e.ago))}</span></div>`).join("") : `<div class="empty">${L("Olay yok.","No events.","Geen gebeurtenissen.")}</div>`; }
 const PK={TW:28,TH:14,OX:185,OY:34,W:10,D:6};
 function pIso(gx,gy){return [PK.OX+(gx-gy)*PK.TW, PK.OY+(gx+gy)*PK.TH];}
 const PARK_POS=[
@@ -779,22 +782,22 @@ const STMAP={online:"çevrimiçi",field:"sahada",busy:"meşgul",brk:"molada"};
 function renderLogs(){ document.getElementById("logList").innerHTML=LOGS.map(l=>`
   <div class="logrow"><span class="lt">${l.t}</span><span class="lsrc">${l.src}</span>
     <span class="lk">${l.kind} <span style="color:#9498a2">· ${esc(tr(l.zone))}</span></span>
-    <span class="ls ${l.st}">${l.st==="ok"?"OK":l.st==="warn"?(LANG==="en"?"WARN":"UYARI"):(LANG==="en"?"CRIT":"KRİTİK")}</span></div>`).join(""); }
+    <span class="ls ${l.st}">${l.st==="ok"?"OK":l.st==="warn"?L("UYARI","WARN","WAARSCH"):L("KRİTİK","CRIT","KRITIEK")}</span></div>`).join(""); }
 function renderStaff(){
   document.getElementById("staffList").innerHTML=STAFF.map(s=>`
     <div class="staffrow"><span class="sdot ${s.st}"></span><span class="snm">${s.n}</span>
-      <span class="sro">${esc(tr(s.role))}</span><span class="sst">${(LANG==="en"?ST_EN:ST_TR)[s.st]}</span></div>`).join("");
+      <span class="sro">${esc(tr(s.role))}</span><span class="sst">${(LANG==="en"?ST_EN:LANG==="nl"?ST_NL:ST_TR)[s.st]}</span></div>`).join("");
   document.getElementById("dispList").innerHTML=DISPATCH.map(d=>`
     <div class="disp"><div class="di">➤</div><div class="dt"><div class="dto">${esc(tr(d.to))}</div>
-      <div class="dx">${esc(tr(d.text))}</div><div class="dm">TalkMind · ${esc(trAgo(d.ago))} ${LANG==="en"?"ago":"önce"}</div></div>
+      <div class="dx">${esc(tr(d.text))}</div><div class="dm">TalkMind · ${esc(trAgo(d.ago))} ${L("önce","ago","geleden")}</div></div>
       <span class="dst ${d.st==='okundu'?'read':''}">${esc(tr(d.st))}</span></div>`).join("");
 }
 function gauge(l,v,unit){const u=unit||"%";const col=v>80?"var(--loss)":v>65?"var(--tag)":"var(--profit)";
   return `<div class="gauge"><span class="gl">${l}</span><span class="gb"><span style="width:${Math.min(100,v)}%;background:${col}"></span></span><span class="gv">${v}${u}</span></div>`;}
 function renderEdge(){
   document.getElementById("nodeList").innerHTML=EDGE_NODES.map(n=>`
-    <div class="node"><div class="nh">${esc(tr(n.name))}<span class="stp">${LANG==="en"?"online":"çevrimiçi"}</span></div>
-      ${gauge("CPU",n.cpu)}${gauge("RAM",n.mem)}${gauge(LANG==="en"?"Temp":"Isı",n.temp,"°C")}</div>`).join("");
+    <div class="node"><div class="nh">${esc(tr(n.name))}<span class="stp">${L("çevrimiçi","online","online")}</span></div>
+      ${gauge("CPU",n.cpu)}${gauge("RAM",n.mem)}${gauge(L("Isı","Temp","Temp"),n.temp,"°C")}</div>`).join("");
   document.getElementById("svcList").innerHTML=SERVICES.map(s=>`
     <div class="svc"><span class="sd"></span><span class="sn">${s.n}</span><span class="sm">${s.ms}ms</span></div>`).join("");
 }
